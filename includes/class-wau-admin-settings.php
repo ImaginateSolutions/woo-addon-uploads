@@ -26,14 +26,14 @@ if( ! class_exists( 'wau_admin_settings_class' ) ){
       register_setting( 'addon_settings', 'wau_addon_settings' );
       add_settings_section(
         'wau_addon_settings_section', 
-        _e( '', 'woo-addon-uplds' ), 
+        _e( '', 'woo-addon-uploads' ), 
         array(&$this, 'addon_settings_callback'), 
         'addon_settings'
       );
 
       add_settings_field( 
         'wau_settings_enable', 
-        __( 'Enable Addon Uploads', 'woo-addon-uplds' ), 
+        __( 'Enable Addon Uploads', 'woo-addon-uploads' ), 
         array(&$this, 'wau_settings_enable_renderer'), 
         'addon_settings', 
         'wau_addon_settings_section' 
@@ -46,7 +46,7 @@ if( ! class_exists( 'wau_admin_settings_class' ) ){
      */
     function addon_settings_callback(){
       
-      echo _e( 'Configure your Settings', 'woo-addon-uplds' );
+      echo _e( 'Configure your Settings', 'woo-addon-uploads' );
       
     }
     
@@ -67,7 +67,7 @@ if( ! class_exists( 'wau_admin_settings_class' ) ){
                id="wau_addon_settings[wau_enable_addon]" 
                name="wau_addon_settings[wau_enable_addon]" <?php echo $checked; ?> value='1'>
         <label for="wau_addon_settings[wau_enable_addon]">
-          <?php _e( 'Enable Addon Uploads on Product Page', 'woo-addon-uplds' );?>
+          <?php _e( 'Enable Addon Uploads on Product Page', 'woo-addon-uploads' );?>
         </label>
       </div>
       

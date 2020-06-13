@@ -46,8 +46,8 @@ if( ! class_exists( 'wau_admin_class' ) ){
                      'manage_woocommerce', 
                      'addon_settings_page' );
       add_submenu_page( 'addon_settings_page.php', 
-                        __( 'Addon Upload Settings', 'woo-addon-uplds' ), 
-                        __( 'Addon Upload Settings', 'woo-addon-uplds' ), 
+                        __( 'Addon Upload Settings', 'woo-addon-uploads' ), 
+                        __( 'Addon Upload Settings', 'woo-addon-uploads' ), 
                         'manage_woocommerce', 
                         'addon_settings_page', 
                         array(&$this, 'addon_settings_page' ) );
@@ -62,7 +62,7 @@ if( ! class_exists( 'wau_admin_class' ) ){
       ?>
         <h2 class="nav-tab-wrapper woo-nav-tab-wrapper">
           <a href="admin.php?page=image_settings_page" class="nav-tab nav-tab-active"> 
-            <?php _e( 'Addon Upload Settings', 'woo-addon-uplds' );?> 
+            <?php _e( 'Addon Upload Settings', 'woo-addon-uploads' );?> 
           </a>
         </h2>
 
@@ -70,7 +70,7 @@ if( ! class_exists( 'wau_admin_class' ) ){
 
         <form action='options.php' method='post'>
           
-          <h2><?php _e( 'Settings', 'woo-addon-uplds' ); ?></h2>
+          <h2><?php _e( 'Settings', 'woo-addon-uploads' ); ?></h2>
           
           <?php $this->wau_admin_settings_class->load_addon_settings(); ?>
           

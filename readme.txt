@@ -1,10 +1,10 @@
 === WooCommerce Addon Uploads ===
 Contributors: ImagiSol, dhruvin
 Donate link: https://www.paypal.me/DhruvinS
-Tags: woocommerce, addon, uploads
+Tags: woocommerce, addon, uploads, woocommerce file upload, file upload
 Requires at least: 1.4.0
-Tested up to: 5.1
-Stable tag: 1.2.0
+Tested up to: 5.4
+Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,9 +26,9 @@ Pro version of the plugin can be found at **[WooCommerce Addon Uploads Pro](http
 
 = Automatic Installation =
 
-Automatic installation is the easiest option as WordPress handles the file transfers itself and you don’t need to leave your web browser. To do an automatic install of WooCommerce Addon Uploads, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don?t need to leave your web browser. To do an automatic install of WooCommerce Addon Uploads, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
 
-In the search field type “WooCommerce Addon Uploads” and click Search Plugins. Once you’ve found our plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking “Install Now”.
+In the search field type "WooCommerce Addon Uploads" and click Search Plugins. Once you've found our plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking "Install Now".
 
 = Manual installation =
 
@@ -42,6 +42,10 @@ The manual installation method involves downloading our eCommerce plugin and upl
 4. Link of media once order received
 
 == Changelog ==
+
+= 1.3.0 (13.06.2020) =
+* Dev - Added pot files for translations
+* Dev - Added compatibility with WooCommerce 4.2
 
 = 1.2.0 =
 * Issue fixed related to deprecated item meta hook
