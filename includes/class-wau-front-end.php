@@ -24,7 +24,7 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 			add_filter( 'woocommerce_add_cart_item_data', array( &$this, 'wau_add_cart_item_data' ), 10, 2 );
 			add_filter( 'woocommerce_get_cart_item_from_session', array( &$this, 'wau_get_cart_item_from_session' ), 10, 2 );
 			add_filter( 'woocommerce_get_item_data', array( &$this, 'wau_get_item_data' ), 10, 2 );
-			add_action( 'woocommerce_new_order_item', array( &$this, 'wau_add_item_meta_url' ), 10, 3 );
+			add_action( 'woocommerce_checkout_create_order_line_item', array( &$this, 'wau_add_item_meta_url' ), 10, 4 );
 
 			add_action( 'woocommerce_cart_item_removed', array( &$this, 'wau_remove_cart_action' ), 10, 2 );
 		}
@@ -50,9 +50,18 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 
 		function addon_uploads_section() {
 
+			global $product;
+
 			$addon_settings = get_option( 'wau_addon_settings' );
 
-			if ( isset( $addon_settings['wau_enable_addon'] ) && '1' === $addon_settings['wau_enable_addon'] ) {
+			$product_ids = apply_filters( 'wau_include_product_ids', array() );
+
+			$enabled = false;
+			if ( ( is_array( $product_ids ) && empty( $product_ids ) ) || in_array( $product->get_id(), $product_ids, true ) ) {
+				$enabled = true;
+			}
+
+			if ( isset( $addon_settings['wau_enable_addon'] ) && '1' === $addon_settings['wau_enable_addon'] && $enabled ) {
 
 				$upload_label = __( 'Upload an image: ', 'woo-addon-uploads' );
 
@@ -105,19 +114,16 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 			return $other_data;
 		}
 
-		function wau_add_item_meta_url( $item_id, $values, $order_id ){
+		function wau_add_item_meta_url( $item, $cart_item_key, $values, $order ) {
 
-			global $woocommerce;
+			if ( empty( $values['wau_addon_ids'] ) ) {
+				return;
+			}
 
-			foreach ( $woocommerce->cart->get_cart() as $cart_item_key => $values ){
+			foreach ( $values['wau_addon_ids'] as $addon_key => $addon_id ) {
+				$media_url = wp_get_attachment_url( esc_attr( $addon_id['media_id'] ) );
 
-				if ( isset( $values['wau_addon_ids'] ) ) {
-					foreach ( $values['wau_addon_ids'] as $addon_id ) {
-						$name      = __( 'Uploaded Media', 'woo-addon-uploads' );
-						$media_url = wp_get_attachment_url( esc_attr( $addon_id['media_id'] ) );
-						wc_add_order_item_meta( $item_id, $name, $media_url, false );
-					}
-				}
+				$item->add_meta_data( __( 'Uploaded Media', 'woo-addon-uploads' ), $media_url );
 			}
 		}
 

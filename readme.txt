@@ -3,7 +3,7 @@ Contributors: ImagiSol, dhruvin
 Donate link: https://www.paypal.me/DhruvinS
 Tags: woocommerce, addon, uploads, woocommerce file upload, file upload
 Requires at least: 1.4.0
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -43,6 +43,11 @@ The manual installation method involves downloading our eCommerce plugin and upl
 
 == Changelog ==
 
+= 1.4.0 (13.08.2020) =
+* Fix - issue where file was getting uploaded to other products as well where the user had not uploaded any file.
+* Dev - Added filter to allow only specific products where files can be uploaded.
+* Dev - Added compatibility with WooCommerce 4.3
+
 = 1.3.0 (13.06.2020) =
 * Dev - Added pot files for translations
 * Dev - Added compatibility with WooCommerce 4.2
@@ -58,9 +63,16 @@ The manual installation method involves downloading our eCommerce plugin and upl
 
 == Frequently Asked Questions ==
 
-= Is this plugin compatible with WooCommerce 3.0 ? =
+= How to allow file upload only on specific products? =
 
-Yes, this plugin is compatible with WooCommerce 3.0
+Add the below code in your theme functions.php file or Code Snippets plugin.
+```
+add_filter( 'wau_include_product_ids', 'wau_include_only_product', 10, 1 );
+
+function wau_include_only_product( $pids ) {
+	return array( 310, 315 ); // Add the product ID's here in the array.
+}
+```
 
 == Upgrade Notice ==
 
