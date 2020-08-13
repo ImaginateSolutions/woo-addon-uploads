@@ -3,8 +3,8 @@
  * Plugin Name: WooCommerce Addon Uploads
  * Plugin URI: https://imaginate-solutions.com/
  * Description: WooCommerce addon to upload additional files before adding product to cart
- * Version: 1.3.0
- * Author: Dhruvin Shah
+ * Version: 1.4.0
+ * Author: Imaginate Solutions
  * Author URI: https://imaginate-solutions.com
  *
  * Text Domain: woo-addon-uploads
@@ -37,7 +37,7 @@ if ( ! class_exists( 'woo_add_uplds' ) ) {
 		 *
 		 * @var      string    $version    The current version of the plugin.
 		 */
-		protected $version = '1.3.0';
+		protected $version = '1.4.0';
 
 		public function __construct() {
 			$this->define_constants();
