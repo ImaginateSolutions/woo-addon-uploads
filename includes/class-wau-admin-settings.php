@@ -137,7 +137,7 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 
 			<div class="row">
 				<select id="wau_addon_settings[wau_settings_categories][]" name="wau_addon_settings[wau_settings_categories][]" multiple="multiple" class="wau_category_select">
-					<option value='all'><?php esc_attr_e( 'All', 'woo-addon-uploads' ); ?></option>
+					<option value='all' <?php echo esc_attr( in_array( 'all', $selected_cats ) ? 'selected=selected' : '' ); ?>><?php esc_attr_e( 'All', 'woo-addon-uploads' ); ?></option>
 					<?php
 					foreach ( $product_categories as $cat_key => $cat_value ) {
 						?>
