@@ -26,6 +26,8 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 			add_filter( 'woocommerce_get_item_data', array( &$this, 'wau_get_item_data' ), 10, 2 );
 			add_action( 'woocommerce_checkout_create_order_line_item', array( &$this, 'wau_add_item_meta_url' ), 10, 4 );
 
+			add_filter( 'wau_category_checks', array( $this, 'wau_check_category_allowed' ), 10, 2 );
+
 			add_action( 'woocommerce_cart_item_removed', array( &$this, 'wau_remove_cart_action' ), 10, 2 );
 		}
 
@@ -56,17 +58,19 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 
 			$product_ids = apply_filters( 'wau_include_product_ids', array() );
 
+			$category_passed = apply_filters( 'wau_category_checks', true, $product );
+
 			$enabled = false;
 			if ( ( is_array( $product_ids ) && empty( $product_ids ) ) || in_array( $product->get_id(), $product_ids, true ) ) {
 				$enabled = true;
 			}
 
-			if ( isset( $addon_settings['wau_enable_addon'] ) && '1' === $addon_settings['wau_enable_addon'] && $enabled ) {
+			if ( isset( $addon_settings['wau_enable_addon'] ) && '1' === $addon_settings['wau_enable_addon'] && $enabled && $category_passed ) {
 
 				$upload_label = __( 'Upload an image: ', 'woo-addon-uploads' );
 
 				$file_upload_template =
-					'<div>
+					'<div class="wau_wrapper_div">
 						<label for="wau_file_addon">' . $upload_label . '</label>
 						<input type="file" name="wau_file_addon" id="wau_file_addon" accept="image/*" class="wau-auto-width wau-files" />
 					</div>';
@@ -127,7 +131,7 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 			}
 		}
 
-		function wau_remove_cart_action( $cart_item_key, $cart ){
+		function wau_remove_cart_action( $cart_item_key, $cart ) {
 			$removed_item = $cart->removed_cart_contents[ $cart_item_key ];
 
 			if ( isset( $removed_item['wau_addon_ids'] ) && isset( $removed_item['wau_addon_ids'][0] ) &&
@@ -136,6 +140,32 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 				$media_id = $removed_item['wau_addon_ids'][0]['media_id'];
 
 				$delete_status = wp_delete_attachment( $media_id, true );
+			}
+		}
+
+		/**
+		 * Check if part of allowed categories.
+		 *
+		 * @param bool       $allowed
+		 * @param WC_Product $product
+		 * @return bool
+		 */
+		public function wau_check_category_allowed( $allowed, $product ) {
+
+			$addon_settings     = get_option( 'wau_addon_settings' );
+			$allowed_categories = isset( $addon_settings['wau_settings_categories'] ) ? $addon_settings['wau_settings_categories'] : array();
+			$product_cats       = $product->get_category_ids();
+
+			if ( empty( $allowed_categories ) ) {
+				return true;
+			}
+
+			$match_cats = array_intersect( $product_cats, $allowed_categories );
+
+			if ( empty( $match_cats ) ) {
+				return false;
+			} else {
+				return true;
 			}
 		}
 	}
