@@ -1,3 +1,7 @@
 .wau-auto-width{
   width: auto !important;
 }
+
+.wau_wrapper_div {
+  padding: 15px 0px;
+}
