@@ -156,7 +156,7 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 			$allowed_categories = isset( $addon_settings['wau_settings_categories'] ) ? $addon_settings['wau_settings_categories'] : array();
 			$product_cats       = $product->get_category_ids();
 
-			if ( empty( $allowed_categories ) ) {
+			if ( empty( $allowed_categories ) || in_array( 'all', $allowed_categories, true ) ) {
 				return true;
 			}
 
