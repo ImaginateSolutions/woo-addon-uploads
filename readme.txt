@@ -49,6 +49,10 @@ The manual installation method involves downloading our eCommerce plugin and upl
 
 == Changelog ==
 
+= 1.4.2 (18.04.2021) =
+* Added support for enabling uploads for Product Categories
+* WC Tested upto 5.2
+
 = 1.4.1 (26.03.2021) =
 * WC Tested upto 5.1
 * Plugin name changes
