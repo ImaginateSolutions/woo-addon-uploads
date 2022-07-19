@@ -64,16 +64,16 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 				'addon_settings'
 			);
 
-			add_settings_field( 
-				'wau_settings_enable', 
+			add_settings_field(
+				'wau_settings_enable',
 				__( 'Enable Addon Uploads', 'woo-addon-uploads' ),
 				array( &$this, 'wau_settings_enable_renderer' ),
 				'addon_settings',
 				'wau_addon_settings_section'
 			);
 
-			add_settings_field( 
-				'wau_settings_categories', 
+			add_settings_field(
+				'wau_settings_categories',
 				__( 'Product Categories', 'woo-addon-uploads' ),
 				array( &$this, 'wau_settings_categories_renderer' ),
 				'addon_settings',
@@ -82,15 +82,14 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 		}
 
 		/**
-		 * Call back to display Settings Section information
+		 * Call back to display Settings Section information.
 		 */
-		public function addon_settings_callback(){
-
+		public function addon_settings_callback() {
 			echo esc_html_e( 'Configure your Settings', 'woo-addon-uploads' );
 		}
 
 		/**
-		 * Display HTML for settings
+		 * Display HTML for settings.
 		 */
 		public function wau_settings_enable_renderer() {
 
