@@ -3,7 +3,7 @@
  * Plugin Name: File Uploads Addon for WooCommerce
  * Plugin URI: https://imaginate-solutions.com/
  * Description: WooCommerce addon to upload additional files before adding product to cart
- * Version: 1.4.2
+ * Version: 1.5.0
  * Author: Imaginate Solutions
  * Author URI: https://imaginate-solutions.com
  *
@@ -12,7 +12,7 @@
  *
  * Requires PHP: 5.6
  * WC requires at least: 3.0.0
- * WC tested up to: 5.2
+ * WC tested up to: 6.7
  *
  * @package WooCommerce Addon Uploads
  * @author Dhruvin Shah
@@ -37,15 +37,41 @@ if ( ! class_exists( 'woo_add_uplds' ) ) {
 		 *
 		 * @var      string    $version    The current version of the plugin.
 		 */
-		protected $version = '1.4.2';
+		protected $version = '1.5.0';
 
+		/**
+		 * Default construtor function.
+		 */
 		public function __construct() {
+			if (
+				! $this->is_plugin_active( 'woocommerce/woocommerce.php' ) ||
+				( 'woocommerce-addon-uploads.php' === basename( __FILE__ ) && $this->is_plugin_active( 'woocommerce-addon-uploads-pro/woocommerce-addon-uploads-pro.php' ) )
+				) {
+				return;
+			}
 			$this->define_constants();
 			$this->load_dependencies();
 			$this->set_locale();
 
 			$this->load_admin_settings();
 			$this->front_end_actions();
+		}
+
+		/**
+		 * Is plugin active.
+		 *
+		 * @param   string $plugin Plugin Name.
+		 * @return  bool
+		 * @version 1.6.0
+		 * @since   1.6.0
+		 */
+		public function is_plugin_active( $plugin ) {
+			return ( function_exists( 'is_plugin_active' ) ? is_plugin_active( $plugin ) :
+			(
+				in_array( $plugin, apply_filters( 'active_plugins', (array) get_option( 'active_plugins', array() ) ), true ) ||
+				( is_multisite() && array_key_exists( $plugin, (array) get_site_option( 'active_sitewide_plugins', array() ) ) )
+			)
+			);
 		}
 
 		/**
