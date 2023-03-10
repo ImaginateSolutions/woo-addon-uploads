@@ -73,6 +73,14 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 			);
 
 			add_settings_field(
+				'wau_settings_check',
+				__( 'Do not send link in email', 'woo-addon-uploads' ),
+				array( &$this, 'wau_settings_enable_renderer_2' ),
+				'addon_settings',
+				'wau_addon_settings_section'
+			);
+
+			add_settings_field(
 				'wau_settings_categories',
 				__( 'Product Categories', 'woo-addon-uploads' ),
 				array( &$this, 'wau_settings_categories_renderer' ),
@@ -108,6 +116,32 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 					value='1'>
 				<label for="wau_addon_settings[wau_enable_addon]">
 					<?php esc_html_e( 'Enable Addon Uploads on Product Page', 'woo-addon-uploads' ); ?>
+				</label>
+			</div>
+			<?php
+		}
+
+		/**
+		 * Display HTML do not send link in email
+		 */
+
+		public function wau_settings_enable_renderer_2() {
+
+			$options = get_option('wau_addon_settings' );
+			$checked = '';
+			if ( isset( $options['wau_enable_addon_2'] ) ) {
+				$checked = checked( $options['wau_enable_addon_2'], 1, false );
+			}
+			?>
+
+			<div class="row">
+				<input type='checkbox' 
+					id="wau_addon_settings[wau_enable_addon_2]" 
+					name="wau_addon_settings[wau_enable_addon_2]"
+					<?php echo esc_attr( $checked ); ?>
+					value='1'>
+				<label for="wau_addon_settings[wau_enable_addon_2]">
+					<?php esc_html_e('Do not send link in email', 'woo-addon-uploads'); ?>
 				</label>
 			</div>
 			<?php
