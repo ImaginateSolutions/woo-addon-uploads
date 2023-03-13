@@ -140,27 +140,34 @@ if (!class_exists('wau_front_end_class')) {
 			}
 		}
 
+		// ? removing link from font-end and back-end
 		function unset_specific_order_item_meta_data($order)
 		{
-			
-			foreach ($order as $key => $meta) {
-				if (in_array($meta->key, array('Uploaded Media')))
-					unset($order[$key]);
+			$addon_settings = get_option('wau_addon_settings');
+
+			if (isset($addon_settings['wau_enable_addon_2']) && '1' === $addon_settings['wau_enable_addon_2']){
+				foreach ($order as $key => $meta) {
+					if (in_array($meta->key, array('Uploaded Media')))
+						unset($order[$key]);
+				}
 			}
-			
 			return $order;
 		}
-
+		
+		// ? adding link to the backend admin pannel
 		function add_specific_order_item_meta_data_in_backend($item_id, $item)
 		{
-			
-			if ($item->get_type() !== 'line_item')
-				return;
-			$qty_sel_lines = wc_get_order_item_meta($item_id, 'Uploaded Media', false);
+			$addon_settings = get_option('wau_addon_settings');
 
-			foreach ($qty_sel_lines as $qty_sel_line) {
-				echo '<br>';
-				echo "<b>Uploaded Media</b>: <a href =\"" . $qty_sel_line . "\">\"" . $qty_sel_line . "\"</a>";
+			if (isset($addon_settings['wau_enable_addon_2']) && '1' === $addon_settings['wau_enable_addon_2']){
+				if ($item->get_type() !== 'line_item')
+				return;
+				$qty_sel_lines = wc_get_order_item_meta($item_id, 'Uploaded Media', false);
+
+				foreach ($qty_sel_lines as $qty_sel_line) {
+					echo '<br>';
+					echo "<b>Uploaded Media</b>: <a href =\"" . $qty_sel_line . "\">\"" . $qty_sel_line . "\"</a>";
+				}
 			}
 			
 		}
