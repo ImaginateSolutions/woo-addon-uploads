@@ -75,7 +75,7 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 			add_settings_field(
 				'wau_settings_check',
 				__( 'Do not send link in email', 'woo-addon-uploads' ),
-				array( &$this, 'wau_settings_enable_renderer_2' ),
+				array( &$this, 'wau_link_sender_checkbox' ),
 				'addon_settings',
 				'wau_addon_settings_section'
 			);
@@ -125,22 +125,22 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 		 * Display HTML do not send link in email
 		 */
 
-		public function wau_settings_enable_renderer_2() {
+		public function wau_link_sender_checkbox() {
 
 			$options = get_option('wau_addon_settings' );
 			$checked = '';
-			if ( isset( $options['wau_enable_addon_2'] ) ) {
-				$checked = checked( $options['wau_enable_addon_2'], 1, false );
+			if ( isset( $options['wau_sendlink_checkbox'] ) ) {
+				$checked = checked( $options['wau_sendlink_checkbox'], 1, false );
 			}
 			?>
 
 			<div class="row">
 				<input type='checkbox' 
-					id="wau_addon_settings[wau_enable_addon_2]" 
-					name="wau_addon_settings[wau_enable_addon_2]"
+					id="wau_addon_settings[wau_sendlink_checkbox]" 
+					name="wau_addon_settings[wau_sendlink_checkbox]"
 					<?php echo esc_attr( $checked ); ?>
 					value='1'>
-				<label for="wau_addon_settings[wau_enable_addon_2]">
+				<label for="wau_addon_settings[wau_sendlink_checkbox]">
 					<?php esc_html_e('Do not send link in email', 'woo-addon-uploads'); ?>
 				</label>
 			</div>

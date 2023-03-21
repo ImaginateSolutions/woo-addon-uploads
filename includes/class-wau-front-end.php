@@ -145,7 +145,7 @@ if (!class_exists('wau_front_end_class')) {
 		{
 			$addon_settings = get_option('wau_addon_settings');
 
-			if (isset($addon_settings['wau_enable_addon_2']) && '1' === $addon_settings['wau_enable_addon_2']){
+			if (isset($addon_settings['wau_sendlink_checkbox']) && '1' === $addon_settings['wau_sendlink_checkbox']){
 				foreach ($order as $key => $meta) {
 					if (in_array($meta->key, array('Uploaded Media')))
 						unset($order[$key]);
@@ -159,7 +159,7 @@ if (!class_exists('wau_front_end_class')) {
 		{
 			$addon_settings = get_option('wau_addon_settings');
 
-			if (isset($addon_settings['wau_enable_addon_2']) && '1' === $addon_settings['wau_enable_addon_2']){
+			if (isset($addon_settings['wau_sendlink_checkbox']) && '1' === $addon_settings['wau_sendlink_checkbox']){
 				if ($item->get_type() !== 'line_item')
 				return;
 				$qty_sel_lines = wc_get_order_item_meta($item_id, 'Uploaded Media', false);
