@@ -1,13 +1,30 @@
 <?php
+/**
+ * WooCommerce Addon Uploads Pro Features Class
+ *
+ * Contains all the pro features and other plugin information
+ *
+ * @author      Dhruvin Shah
+ * @package     WooCommerce Addon Uploads
+ */
 
-if ( ! class_exists( 'WC_pro_features' ) ) {
+if ( ! class_exists( 'Wau_Pro_Features' ) ) {
 
-	class WC_pro_features {
+	/**
+	 * This class contains pro features of WooCommerce addon uploads
+	 */
+	class Wau_Pro_Features {
 
+		/**
+		 * This function takes a callback to enqueue scripts
+		 */
 		public function __construct() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_and_styles' ) );
 		}
 
+		/**
+		 * This functions enqueues styles
+		 */
 		public function enqueue_scripts_and_styles() {
 
 			wp_register_style( 'pro-feature-css', plugins_url( '../assets/css/wau_features.css', __FILE__ ), array(), '1.6.0', 'all' );
@@ -15,13 +32,16 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 
 		}
 
+		/**
+		 * This function gets json data and show that as in html template
+		 */
 		public static function pro_features_callback() {
-			$str  = file_get_contents('https://sandbox.imaginate-solutions.com/lite_assets/addon/addon_lite.json');
+			$str  = wp_remote_get( 'https://sandbox.imaginate-solutions.com/lite_assets/addon/addon_lite.json' );
 			$json = json_decode( $str, true );
 			?>
 
 			<?php if ( isset( $json['plugin_header'] ) ) { ?>
-				<sectiion class="top-section plugin_header">
+				<section class="top-section plugin_header">
 					<div class="header-part">
 						<div class="header-left">
 							<img src=" <?php echo esc_url( $json['plugin_header']['image'] ); ?> " alt="">
@@ -30,11 +50,11 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 							<h1><?php echo esc_html( $json['plugin_header']['title'] ); ?></h1>
 						</div>
 					</div>
-				</sectiion>
+				</section>
 			<?php } ?>
 
 			<?php if ( isset( $json['promotional'] ) ) { ?>
-				<sectiion class="promotional sale-discount">
+				<section class="promotional sale-discount">
 					<div class="sale-sub-part">
 						<div class="cart-img">
 							<img src=" <?php echo esc_url( $json['promotional']['image'] ); ?> " alt="">
@@ -45,11 +65,11 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 						</div>
 						<a href="<?php echo esc_url( $json['promotional']['button_link'] ); ?>" class="avail-discount"><?php echo esc_html( $json['promotional']['button_text'] ); ?></a>
 					</div>
-				</sectiion>
+				</section>
 			<?php } ?>
 
 			<?php if ( isset( $json['features'] ) ) { ?>
-				<sectiion class="features">
+				<section class="features">
 					<div class="features-list">
 						<h1><?php echo esc_html( $json['features']['title'] ); ?>:</h1>
 						<ul class="all-features-list">
@@ -63,11 +83,11 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 							<?php } ?>
 						</ul>
 					</div>
-				</sectiion>
+				</section>
 			<?php } ?>
 
 			<?php if ( isset( $json['img_features'] ) ) { ?>
-				<sectiion class="img-features">
+				<section class="img-features">
 					<div class="img-feature-info">
 						<h1><?php echo esc_html( $json['img_features']['title'] ); ?></h1>
 						<div class="feature-icon">
@@ -84,11 +104,11 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 
 						</div>
 					</div>
-				</sectiion>
+				</section>
 			<?php } ?>
 
 			<?php if ( isset( $json['moneyback'] ) ) { ?>
-				<sectiion class="moneyback">
+				<section class="moneyback">
 					<div class="moneyback-info">
 						<div class="moneyback-left-img">
 							<img src=" <?php echo esc_url( $json['moneyback']['image'] ); ?> " alt="">
@@ -98,10 +118,10 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 							<p><?php echo esc_html( $json['moneyback']['text'] ); ?></p>
 						</div>
 					</div>
-				</sectiion>
+				</section>
 			<?php } ?>
 
-			<sectiion class="testimonials">
+			<section class="testimonials">
 				<div class="testimonials-info">
 					<?php if ( isset( $json['callback'] ) ) { ?>
 					<a href="<?php echo esc_url( $json['callback']['button_link'] ); ?>" class="upgrade-to-pro"><?php echo esc_html( $json['callback']['button_text'] ); ?></a>
@@ -127,10 +147,10 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 						</div>
 					<?php } ?>
 				</div>
-			</sectiion>
+			</section>
 
 			<?php if ( isset( $json['other_plugins'] ) ) { ?>
-				<sectiion class="other-plugins">
+				<section class="other-plugins">
 					<div class="other-plugins-info">
 						<h1><?php echo esc_html( $json['other_plugins']['title'] ); ?></h1>
 						<div class="other-plugin-cards">
@@ -148,7 +168,7 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 							<?php } ?>
 						</div>
 					</div>
-				</sectiion>
+				</section>
 			<?php } ?>
 
 			<?php
@@ -157,4 +177,4 @@ if ( ! class_exists( 'WC_pro_features' ) ) {
 	}
 }
 
-$features = new WC_pro_features();
+$features = new Wau_Pro_Features();

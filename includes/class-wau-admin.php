@@ -113,7 +113,7 @@ if ( ! class_exists( 'wau_admin_class' ) ) {
 
 			<?php
 
-			WC_pro_features::pro_features_callback();
+			Wau_Pro_Features::pro_features_callback();
 		}
 
 	}
