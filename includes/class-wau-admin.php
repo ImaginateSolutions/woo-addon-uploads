@@ -53,12 +53,20 @@ if ( ! class_exists( 'wau_admin_class' ) ) {
 				'addon_settings_page'
 			);
 			add_submenu_page(
-				'addon_settings_page.php',
+				'addon_settings_page',
 				__( 'Addon Upload Settings', 'woo-addon-uploads' ),
 				__( 'Addon Upload Settings', 'woo-addon-uploads' ),
 				'manage_woocommerce',
 				'addon_settings_page',
 				array( &$this, 'addon_settings_page' )
+			);
+			add_submenu_page(
+				'addon_settings_page',
+				__( 'Upgrade to Pro', 'woo-addon-uploads' ),
+				__( 'Upgrade to Pro', 'woo-addon-uploads' ),
+				'manage_woocommerce',
+				'addon_pro_page',
+				array( &$this, 'addon_pro_page' )
 			);
 
 		}
@@ -69,8 +77,11 @@ if ( ! class_exists( 'wau_admin_class' ) ) {
 		public function addon_settings_page(){
 			?>
 				<h2 class="nav-tab-wrapper woo-nav-tab-wrapper">
-					<a href="admin.php?page=image_settings_page" class="nav-tab nav-tab-active"> 
+					<a href="admin.php?page=addon_settings_page" class="nav-tab nav-tab-active"> 
 						<?php esc_html_e( 'Addon Upload Settings', 'woo-addon-uploads' ); ?> 
+					</a>
+					<a href="admin.php?page=addon_pro_page" class="nav-tab"> 
+						<?php esc_html_e( 'Upgrade to Pro', 'woo-addon-uploads' ); ?> 
 					</a>
 				</h2>
 
@@ -84,6 +95,25 @@ if ( ! class_exists( 'wau_admin_class' ) ) {
 
 				</form>
 			<?php
+		}
+
+		/**
+		 * Addon Settings Page
+		 */
+		public function addon_pro_page(){
+			?>
+				<h2 class="nav-tab-wrapper woo-nav-tab-wrapper">
+					<a href="admin.php?page=addon_settings_page" class="nav-tab"> 
+						<?php esc_html_e( 'Addon Upload Settings', 'woo-addon-uploads' ); ?> 
+					</a>
+					<a href="admin.php?page=addon_pro_page" class="nav-tab nav-tab-active"> 
+						<?php esc_html_e( 'Upgrade to Pro', 'woo-addon-uploads' ); ?> 
+					</a>
+				</h2>
+
+			<?php
+
+			Wau_Pro_Features::pro_features_callback();
 		}
 
 	}

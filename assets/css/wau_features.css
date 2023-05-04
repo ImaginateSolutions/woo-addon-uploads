@@ -1,0 +1,166 @@
+/* top section */
+.header-part{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 69px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* promotional */
+.promotional .sale-sub-part{
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 39px;
+    margin: 0 0 34px 0;
+    padding-top: 23px;
+    padding-bottom: 23px;
+}
+.promotional .sale-sub-part .avail-discount{
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 22px 53px;
+    background: #3D205A;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+/* features */
+.features-list .all-features-list li{
+    color: #000;
+}
+.features-list .all-features-list li::before{
+    content: "\2713";
+    margin-right: 15px;
+    border-radius: 50%;
+    background: green;
+    color: #FFFFFF;
+    padding: 5px;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* img-features */
+.img-feature-info{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.img-feature-info h1{
+    text-align: center;
+}
+.img-feature-info .feature-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 310px;
+    margin-top: 38px;
+}
+.img-feature-info .feature-icon .each-icon{
+    display: grid;
+    place-items: center;
+}
+.img-feature-info .feature-icon .each-icon p{
+    margin-top: 39px;
+    color: #000;
+}
+
+/* moneyback */
+.moneyback-info{
+    background: #FFFFFF;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 37px;
+}
+.moneyback-info .moneyback-right-content{
+    padding-right: 140px;
+}
+
+/* testimonials */
+.testimonials-info{
+    padding-top: 89px;
+    padding-bottom: 49px;
+    text-align: center;
+}
+.testimonials-info .upgrade-to-pro{
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 22px 53px;
+    background: #3D205A;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 21px;
+}
+.testimonials-info .cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 81px;
+    padding: 84px 52px 0 52px;
+}
+.testimonials-info .cards .each-card{
+    background: #FFFFFF;
+    padding: 37px;
+    border-radius: 10px;
+    text-align: start;
+}
+.testimonials-info .cards .each-card p{
+    color: #000;
+}
+.testimonials-info .cards .each-card .profile{
+    display: flex;
+    align-items: center;
+    gap: 23px;
+}
+.testimonials-info .cards .each-card .profile .name-designation p{
+    margin: 0;
+}
+
+/* other-plugins-info */
+.other-plugins-info {
+    padding-bottom: 139px;
+}
+.other-plugins-info h1{
+    text-align: center;
+}
+.other-plugins-info .other-plugin-cards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 72px;
+    grid-column-gap: 110px;
+    grid-row-gap: 95px;
+    text-align: center;
+}
+.other-plugins-info .other-plugin-cards .other-plugin-card{
+    background: #FFFFFF;
+    padding: 0 40px 53px 40px;
+    border-radius: 20px;
+}
+.other-plugin-card h1{
+    margin-top: 0;
+    line-height: 2rem;
+}
+.other-plugin-card p{
+    text-align: start;
+    margin-bottom: 48px;
+    color: #000;
+}
+.other-plugin-card a{
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 22px 78px;
+    background: #3D205A;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 18px;
+}

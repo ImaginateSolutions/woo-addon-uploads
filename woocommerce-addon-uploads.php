@@ -101,6 +101,7 @@ if ( ! class_exists( 'woo_add_uplds' ) ) {
 		private function load_dependencies(){
 			require_once 'includes/class-wau-admin.php';
 			require_once 'includes/class-wau-front-end.php';
+			require_once 'includes/class-wau-pro-features.php';
 		}
 
 		/**
