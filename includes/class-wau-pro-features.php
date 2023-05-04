@@ -37,7 +37,7 @@ if ( ! class_exists( 'Wau_Pro_Features' ) ) {
 		 */
 		public static function pro_features_callback() {
 			$str  = wp_remote_get( 'https://sandbox.imaginate-solutions.com/lite_assets/addon/addon_lite.json' );
-			$json = json_decode( $str, true );
+			$json = json_decode( $str['body'], true );
 			?>
 
 			<?php if ( isset( $json['plugin_header'] ) ) { ?>
