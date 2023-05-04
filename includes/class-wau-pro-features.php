@@ -36,8 +36,10 @@ if ( ! class_exists( 'Wau_Pro_Features' ) ) {
 		 * This function gets json data and show that as in html template
 		 */
 		public static function pro_features_callback() {
-			$str  = wp_remote_get( 'https://sandbox.imaginate-solutions.com/lite_assets/addon/addon_lite.json' );
-			$json = json_decode( $str['body'], true );
+			$str = wp_remote_get( 'https://sandbox.imaginate-solutions.com/lite_assets/addon/addon_lite.json' );
+			if ( ! is_wp_error( $str ) ) {
+				$json = json_decode( wp_remote_retrieve_body( $str ), true );
+			}
 			?>
 
 			<?php if ( isset( $json['plugin_header'] ) ) { ?>
