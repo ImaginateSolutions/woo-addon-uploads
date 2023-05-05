@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: File Uploads Addon for WooCommerce
- * Plugin URI: https://imaginate-solutions.com/
+ * Plugin URI: https://imaginate-solutions.com/downloads/woocommerce-addon-uploads/
  * Description: WooCommerce addon to upload additional files before adding product to cart
- * Version: 1.5.0
+ * Version: 1.6.1
  * Author: Imaginate Solutions
  * Author URI: https://imaginate-solutions.com
  *
@@ -12,7 +12,7 @@
  *
  * Requires PHP: 5.6
  * WC requires at least: 3.0.0
- * WC tested up to: 6.7
+ * WC tested up to: 7.6
  *
  * @package WooCommerce Addon Uploads
  * @author Dhruvin Shah
@@ -37,7 +37,7 @@ if ( ! class_exists( 'woo_add_uplds' ) ) {
 		 *
 		 * @var      string    $version    The current version of the plugin.
 		 */
-		protected $version = '1.5.0';
+		protected $version = '1.6.1';
 
 		/**
 		 * Default construtor function.
@@ -117,6 +117,24 @@ if ( ! class_exists( 'woo_add_uplds' ) ) {
 		private function load_admin_settings() {
 
 			$admin_class = new wau_admin_class();
+
+			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+		}
+
+		/**
+		 * Add custom links on plugin page
+		 *
+		 * @param array $links Current Set of links.
+		 * @return array
+		 */
+		public function action_links( $links ) {
+			$custom_links = array();
+			if ( 'woocommerce-addon-uploads.php' === basename( __FILE__ ) ) {
+				$custom_links[] = '<a target="_blank" style="color: #1da867; font-weight: 600" href="https://imaginate-solutions.com/downloads/woocommerce-addon-uploads/?utm_source=lite&utm_medium=fua&utm_campaign=upgrade">' .
+				__( 'Upgrade to Pro', 'woo-addon-uploads' ) . '</a>';
+			}
+			$custom_links[] = '<a href="' . admin_url( 'admin.php?page=addon_settings_page' ) . '">' . __( 'Settings', 'woo-addon-uploads' ) . '</a>';
+			return array_merge( $custom_links, $links );
 		}
 
 		/**

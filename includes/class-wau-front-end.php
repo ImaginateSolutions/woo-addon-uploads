@@ -102,15 +102,53 @@ if ( ! class_exists( 'wau_front_end_class' ) ) {
 			return $cart_item;
 		}
 
+		public function is_woocommerce_block_present() {
+			$post = get_post();
+
+			// This condition will appear for ajax calls on the checkout page.
+			if ( is_null( $post ) ) {
+				return true;
+			}
+
+			if ( ! has_blocks( $post->post_content ) ) {
+				return false;
+			}
+			$blocks      = parse_blocks( $post->post_content );
+			$block_names = array_map(
+				function ( $block ) {
+					return $block['blockName'];
+				},
+				$blocks
+			);
+
+			return in_array(
+				'woocommerce/cart',
+				$block_names,
+				true
+			) ||
+			in_array(
+				'woocommerce/checkout',
+				$block_names,
+				true
+			);
+		}
+
 		function wau_get_item_data( $other_data, $cart_item ) {
 			if ( isset( $cart_item['wau_addon_ids'] ) ) {
 				foreach ( $cart_item['wau_addon_ids'] as $addon_id ) {
-					$name    = __( 'Uploaded File', 'woo-addon-uploads' );
-					$display = $addon_id['media_id'];
+					$block_present = $this->is_woocommerce_block_present();
+					if ( $block_present ) {
+						$name    = __( 'Uploaded File', 'woo-addon-uploads' );
+						$display = '&#9989;';
+					} else {
+						$name    = __( 'Uploaded File', 'woo-addon-uploads' );
+						$display = $addon_id['media_id'];
+						$display = wp_get_attachment_image( $display, 'thumbnail', 'true', '' );
+					}
 
 					$other_data[] = array(
 						'name'    => $name,
-						'display' => wp_get_attachment_image( $display, 'thumbnail', 'true', '' )
+						'display' => $display,
 					);
 				}
 			}
