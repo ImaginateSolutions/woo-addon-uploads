@@ -3,7 +3,7 @@ Contributors: ImagiSol, dhruvin
 Donate link: https://www.paypal.me/DhruvinS
 Tags: woocommerce, addon, uploads, woocommerce file upload, file upload, print on demand, woocommerce product addons, product addons
 Requires at least: 5.0
-Tested up to: 6.0
+Tested up to: 6.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -18,7 +18,7 @@ Typical use cases include an online shop with a Print on demand feature where cu
 
 The file upload feature helps store owners to capture additional information from their customers and helps to save considerable time in preparing the Order for customers without waiting for additional information that might be required.
 
-> I was able to install this plugin and have a **file upload feature** on all my products. Tested and working well! It’s a **great useful feature** for WooCommerce.
+> I was able to install this plugin and have a **file upload feature** on all my products. Tested and working well! Itï¿½s a **great useful feature** for WooCommerce.
 >
 > Thanks very much!
 
@@ -44,6 +44,18 @@ For any suggestions and customizations please create a ticket [here](https://ima
 * Set maximum file size validations for the files to be uploaded.
 * Set maximum and minimum resolutions validations for the images to be uploaded.
 
+= Our other plugins =
+
+* [Custom Shipping Methods for WooCommerce](https://imaginate-solutions.com/downloads/custom-shipping-methods-for-woocommerce/?utm_source=wporg&utm_medium=fua&utm_campaign=readme/) - Create custom shipping methods for your WooCommerce store and manage dynamic shipping with ease.
+
+* [Custom Payment Gateways for WooCommerce](https://imaginate-solutions.com/downloads/custom-payment-gateways-for-woocommerce/?utm_source=wporg&utm_medium=fua&utm_campaign=readme/) - Create custom payment gateways for your WooCommerce store to add more payment options for the user to choose from.
+
+* [Payment Gateways by User Role](https://imaginate-solutions.com/downloads/payment-gateways-by-user-roles-for-woocommerce/?utm_source=wporg&utm_medium=fua&utm_campaign=readme/) - Allow payment gateways to be available or not available for only particular user roles.
+
+* [Variations Radio Buttons for WooCommerce](https://imaginate-solutions.com/downloads/variations-radio-buttons-for-woocommerce/?utm_source=wporg&utm_medium=fua&utm_campaign=readme/) - Convert your variations dropdown into radio buttons there by allowing customers a much better user experience and speeding up the checkout process.
+
+* [WooCommerce Variations Reports](https://imaginate-solutions.com/downloads/woocommerce-variations-reports/?utm_source=wporg&utm_medium=fua&utm_campaign=readme/) - Get a report of how your variations sales are happening on your WooCommerce Store.
+
 == Installation ==
 
 = Automatic Installation =
@@ -64,6 +76,13 @@ The manual installation method involves downloading our eCommerce plugin and upl
 4. Link of media once order received
 
 == Changelog ==
+
+= 1.6.1 (04.05.2023) =
+* Fixed a minor bug related to WooCommerce Cart and Checkout Blocks.
+
+= 1.6.0 (20.04.2023) =
+* Added compatibility with WooCommerce Cart and Checkout Blocks.
+* WC Tested upto 7.6
 
 = 1.5.0 (19.07.2022) =
 * Resolved conflicts when there is Pro version active.

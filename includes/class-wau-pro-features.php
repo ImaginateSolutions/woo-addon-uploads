@@ -25,19 +25,21 @@ if ( ! class_exists( 'Wau_Pro_Features' ) ) {
 		/**
 		 * This functions enqueues styles
 		 */
-		public function enqueue_scripts_and_styles() {
-
-			wp_register_style( 'pro-feature-css', plugins_url( '../assets/css/wau_features.css', __FILE__ ), array(), '1.6.0', 'all' );
-			wp_enqueue_style( 'pro-feature-css' );
-
+		public function enqueue_scripts_and_styles( $hook_suffix ) {
+			if ( 'addon-upload-settings_page_addon_pro_page' === $hook_suffix ) {
+				wp_register_style( 'pro-feature-css', plugins_url( '../assets/css/wau_features.css', __FILE__ ), array(), '1.6.0', 'all' );
+				wp_enqueue_style( 'pro-feature-css' );
+			}
 		}
 
 		/**
 		 * This function gets json data and show that as in html template
 		 */
 		public static function pro_features_callback() {
-			$str = wp_remote_get( 'https://sandbox.imaginate-solutions.com/lite_assets/addon/addon_lite.json' );
-			if ( ! is_wp_error( $str ) ) {
+			$str = wp_safe_remote_get( 'https://imaginate-solutions.com/wp-content/uploads/addon/addon_lite.json' );
+
+			$json = array();
+			if ( ! is_wp_error( $str ) && wp_remote_retrieve_response_code( $str ) === 200 ) {
 				$json = json_decode( wp_remote_retrieve_body( $str ), true );
 			}
 			?>
@@ -65,7 +67,7 @@ if ( ! class_exists( 'Wau_Pro_Features' ) ) {
 							<h1><?php echo esc_html( $json['promotional']['title'] ); ?></h1>
 							<p><?php echo esc_html( $json['promotional']['sub_title'] ); ?></p>
 						</div>
-						<a href="<?php echo esc_url( $json['promotional']['button_link'] ); ?>" class="avail-discount"><?php echo esc_html( $json['promotional']['button_text'] ); ?></a>
+						<a href="<?php echo esc_url( $json['promotional']['button_link'] ); ?>" class="avail-discount" target="_blank"><?php echo esc_html( $json['promotional']['button_text'] ); ?></a>
 					</div>
 				</section>
 			<?php } ?>
@@ -126,7 +128,7 @@ if ( ! class_exists( 'Wau_Pro_Features' ) ) {
 			<section class="testimonials">
 				<div class="testimonials-info">
 					<?php if ( isset( $json['callback'] ) ) { ?>
-					<a href="<?php echo esc_url( $json['callback']['button_link'] ); ?>" class="upgrade-to-pro"><?php echo esc_html( $json['callback']['button_text'] ); ?></a>
+					<a href="<?php echo esc_url( $json['callback']['button_link'] ); ?>" class="upgrade-to-pro" target="_blank"><?php echo esc_html( $json['callback']['button_text'] ); ?></a>
 					<?php } ?>
 
 					<?php if ( isset( $json['testimonials'] ) ) { ?>
@@ -140,8 +142,8 @@ if ( ! class_exists( 'Wau_Pro_Features' ) ) {
 									<div class='profile'>
 										<img src=' <?php echo esc_url( $testimonial['image'] ); ?> ' alt="">
 										<div class='name-designation'>
-											<p><?php echo esc_html( $testimonial['name'] ); ?></p>
-											<p><?php echo esc_html( $testimonial['designation'] ); ?></p>
+											<p class="person-name"><strong><?php echo esc_html( $testimonial['name'] ); ?></strong></p>
+											<p class="person-design"><?php echo esc_html( $testimonial['designation'] ); ?></p>
 										</div>
 									</div>
 								</div>
@@ -165,7 +167,7 @@ if ( ! class_exists( 'Wau_Pro_Features' ) ) {
 									<img src=" <?php echo esc_url( $other_plugin['image'] ); ?> " alt="">
 									<h1><?php echo esc_html( $other_plugin['title'] ); ?></h1>
 									<p><?php echo esc_html( $other_plugin['text'] ); ?></p>
-									<a href="<?php echo esc_url( $other_plugin['button_link'] ); ?>" class="get-lugin"><?php echo esc_html( $other_plugin['button_text'] ); ?></a>
+									<a href="<?php echo esc_url( $other_plugin['button_link'] ); ?>" class="get-lugin" target="_blank"><?php echo esc_html( $other_plugin['button_text'] ); ?></a>
 								</div>
 							<?php } ?>
 						</div>

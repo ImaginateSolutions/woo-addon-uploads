@@ -32,6 +32,8 @@
 /* features */
 .features-list .all-features-list li{
     color: #000;
+    font-size: 21px;
+    line-height: 28px;
 }
 .features-list .all-features-list li::before{
     content: "\2713";
@@ -58,7 +60,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 310px;
+    gap: 200px;
     margin-top: 38px;
 }
 .img-feature-info .feature-icon .each-icon{
@@ -78,7 +80,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 37px;
+    gap: 40px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 .moneyback-info .moneyback-right-content{
     padding-right: 140px;
@@ -122,6 +126,12 @@
 }
 .testimonials-info .cards .each-card .profile .name-designation p{
     margin: 0;
+}
+.each-card p {
+    font-size: 14px;
+}
+.person-name {
+    font-size: 16px;
 }
 
 /* other-plugins-info */
