@@ -14,7 +14,7 @@ if ( ! class_exists( 'wau_admin_class' ) ) {
 	 * Addon Uploads Admin Class.
 	 */
 	class wau_admin_class {
-
+		private $wau_admin_settings_class; //property decelared
 		/**
 		 * Default constructor function.
 		 */
@@ -23,7 +23,7 @@ if ( ! class_exists( 'wau_admin_class' ) ) {
 			$this->load_admin_dependencies();
 
 			// WordPress Administration Menu.
-			add_action( 'admin_menu', array( &$this, 'addon_upload_settings_menu' ) );
+			add_action( 'admin_menu', array( $this, 'addon_upload_settings_menu' ) );
 
 		}
 
@@ -58,7 +58,7 @@ if ( ! class_exists( 'wau_admin_class' ) ) {
 				__( 'Addon Upload Settings', 'woo-addon-uploads' ),
 				'manage_woocommerce',
 				'addon_settings_page',
-				array( &$this, 'addon_settings_page' )
+				array( $this, 'addon_settings_page' )
 			);
 			add_submenu_page(
 				'addon_settings_page',
@@ -66,7 +66,7 @@ if ( ! class_exists( 'wau_admin_class' ) ) {
 				__( 'Upgrade to Pro', 'woo-addon-uploads' ),
 				'manage_woocommerce',
 				'addon_pro_page',
-				array( &$this, 'addon_pro_page' )
+				array( $this, 'addon_pro_page' )
 			);
 
 		}

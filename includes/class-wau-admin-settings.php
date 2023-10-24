@@ -19,9 +19,9 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 		 * Constructor.
 		 */
 		public function __construct(){
-			add_action( 'admin_init', array( &$this, 'addon_settings_api_init' ) );
+			add_action( 'admin_init', array( $this, 'addon_settings_api_init' ) );
 
-			add_action( 'admin_enqueue_scripts', array( &$this, 'wau_enqueue_scripts' ), 10 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'wau_enqueue_scripts' ), 10 );
 		}
 
 		/**
@@ -60,14 +60,14 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 			add_settings_section(
 				'wau_addon_settings_section',
 				'',
-				array( &$this, 'addon_settings_callback' ),
+				array( $this, 'addon_settings_callback' ),
 				'addon_settings'
 			);
 
 			add_settings_field(
 				'wau_settings_enable',
 				__( 'Enable Addon Uploads', 'woo-addon-uploads' ),
-				array( &$this, 'wau_settings_enable_renderer' ),
+				array( $this, 'wau_settings_enable_renderer' ),
 				'addon_settings',
 				'wau_addon_settings_section'
 			);
@@ -75,7 +75,7 @@ if ( ! class_exists( 'wau_admin_settings_class' ) ) {
 			add_settings_field(
 				'wau_settings_categories',
 				__( 'Product Categories', 'woo-addon-uploads' ),
-				array( &$this, 'wau_settings_categories_renderer' ),
+				array( $this, 'wau_settings_categories_renderer' ),
 				'addon_settings',
 				'wau_addon_settings_section'
 			);
