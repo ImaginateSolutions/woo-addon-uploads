@@ -77,6 +77,10 @@ The manual installation method involves downloading our eCommerce plugin and upl
 
 == Changelog ==
 
+= 1.7.0 (26.10.2023) =
+* Compatibility with PHP 8.2
+* Compatibility with WooCommerce HPOS
+
 = 1.6.1 (04.05.2023) =
 * Fixed a minor bug related to WooCommerce Cart and Checkout Blocks.
 
