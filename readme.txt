@@ -77,6 +77,10 @@ The manual installation method involves downloading our eCommerce plugin and upl
 
 == Changelog ==
 
+= 1.7.1 (12.01.2024) =
+* Added an improvement for compatibility with Product Options and Price Calculation Formulas for WooCommerce
+* WooCommerce tested upto 8.4
+
 = 1.7.0 (26.10.2023) =
 * Compatibility with PHP 8.2
 * Compatibility with WooCommerce HPOS
