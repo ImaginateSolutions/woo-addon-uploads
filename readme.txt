@@ -3,7 +3,7 @@ Contributors: ImagiSol, dhruvin
 Donate link: https://www.paypal.me/DhruvinS
 Tags: woocommerce, addon, uploads, woocommerce file upload, file upload, print on demand, woocommerce product addons, product addons
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -18,7 +18,7 @@ Typical use cases include an online shop with a Print on demand feature where cu
 
 The file upload feature helps store owners to capture additional information from their customers and helps to save considerable time in preparing the Order for customers without waiting for additional information that might be required.
 
-> I was able to install this plugin and have a **file upload feature** on all my products. Tested and working well! It�s a **great useful feature** for WooCommerce.
+> I was able to install this plugin and have a **file upload feature** on all my products. Tested and working well! It’s a **great useful feature** for WooCommerce.
 >
 > Thanks very much!
 
